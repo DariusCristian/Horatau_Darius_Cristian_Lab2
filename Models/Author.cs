@@ -10,9 +10,10 @@ namespace Horatau_Darius_Cristian_Lab2.Models
         [Display(Name = "Last Name")]
         public string LastName { get; set; }
         public ICollection<Book>? Books { get; set; }
+        [Display (Name = "Full Name")]
         public string FullName
         {
-            get { return $"{FirstName} {LastName}"; }
+            get { return FirstName + " " + LastName; }
         }
     }
 }
