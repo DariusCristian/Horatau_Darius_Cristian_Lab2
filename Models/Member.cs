@@ -5,8 +5,7 @@ namespace Horatau_Darius_Cristian_Lab2.Models
     public class Member
     {
         public int ID { get; set; }
-        [RegularExpression(@"^[A-Z]+[a-z\s]*$")], ErrorMessage =
-"Prenumele trebuie sa inceapa cu majuscula (ex. Ana sau Ana Maria sau AnaMaria")]
+        [RegularExpression(@"^[A-Z]+[a-z\s]*$", ErrorMessage = "Prenumele trebuie sa inceapa cu majuscula (ex. Ana sau Ana Maria sau AnaMaria")]
         [StringLength(30, MinimumLength = 3)]
         public string? FirstName { get; set; }
         [RegularExpression(@"^[A-Z]+[a-z\s]*$")]
@@ -16,7 +15,8 @@ namespace Horatau_Darius_Cristian_Lab2.Models
         public string? Adress { get; set; }
         public string Email { get; set; }
 
-        [RegularExpression(@"^\(?([0-9]{4})\)?[-. ]?([0-9]{3})[-. ]?([0-9]{3})$", ErrorMessage = "Telefonul trebuie sa fie de forma '0722-123-123' sau '0722.123.123' sau '0722 123 123'")]
+        [RegularExpression(@"^(?:0\d{9}|0\d{3}(?:[-. ]?\d{3}){2})$", ErrorMessage = "Telefonul trebuie să înceapă cu 0 și să aibă 10 cifre (ex: 0722123123 sau 0722-123-123/0722.123.123/0722 123 123).")]
+
         public string? Phone { get; set; }
         [Display(Name = "Full Name")]
         public string? FullName
