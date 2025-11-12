@@ -2,10 +2,11 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Horatau_Darius_Cristian_Lab2.Data;
 using Microsoft.AspNetCore.Identity;
+using Horatau_Darius_Cristian_Lab2.Pages.Books;
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-builder.Services.AddRazorPages();
+builder.Services.AddRazorPages(options => { options.Conventions.AuthorizeFolder("/Books"); });
 builder.Services.AddDbContext<Horatau_Darius_Cristian_Lab2Context>(options =>
     options.UseSqlServer(builder.Configuration.GetConnectionString("Horatau_Darius_Cristian_Lab2Context") ?? throw new InvalidOperationException("Connection string 'Horatau_Darius_Cristian_Lab2Context' not found.")));
 
