@@ -25,7 +25,7 @@ namespace Horatau_Darius_Cristian_Lab2.Pages.Books
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToPage("./Index"); ;
             }
 
             var book = await _context.Book.FirstOrDefaultAsync(m => m.ID == id);
