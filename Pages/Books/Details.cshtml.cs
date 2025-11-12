@@ -1,15 +1,17 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using Horatau_Darius_Cristian_Lab2.Data;
+using Horatau_Darius_Cristian_Lab2.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using Horatau_Darius_Cristian_Lab2.Data;
-using Horatau_Darius_Cristian_Lab2.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Horatau_Darius_Cristian_Lab2.Pages.Books
 {
+    [Authorize(Roles = "Admin")]
     public class DetailsModel : PageModel
     {
         private readonly Horatau_Darius_Cristian_Lab2.Data.Horatau_Darius_Cristian_Lab2Context _context;
@@ -25,7 +27,7 @@ namespace Horatau_Darius_Cristian_Lab2.Pages.Books
         {
             if (id == null)
             {
-                return NotFound();
+                return RedirectToPage("./Index"); ;
             }
 
             var book = await _context.Book.FirstOrDefaultAsync(m => m.ID == id);
